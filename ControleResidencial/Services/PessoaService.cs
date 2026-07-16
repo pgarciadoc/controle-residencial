@@ -1,6 +1,8 @@
 ﻿using ControleResidencial.Data;
 using ControleResidencial.DTOs.Pessoa;
 using ControleResidencial.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Runtime.CompilerServices;
 
 namespace ControleResidencial.Services.Interfaces
@@ -17,9 +19,22 @@ namespace ControleResidencial.Services.Interfaces
           
         }
 
-        public Task<PessoaResponseDto?> BuscarPorIdAsync(int id)
+        public async Task<PessoaResponseDto?> BuscarPorIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var pessoa = await _context.Pessoas.FindAsync(id);
+
+            if (pessoa == null)
+            {
+                return null;
+            }
+   
+            return new PessoaResponseDto
+            {
+              Id = pessoa.Id,
+              Nome = pessoa.Nome,
+              Idade = pessoa.Idade,
+            };
+            
         }
 
 
@@ -46,7 +61,7 @@ namespace ControleResidencial.Services.Interfaces
             throw new NotImplementedException();
         }
 
-        public Task<PessoaResponseDto> ListarAsync()
+        public async Task<List<PessoaResponseDto>> ListarAsync()
         {
             throw new NotImplementedException();
         }

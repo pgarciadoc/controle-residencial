@@ -9,7 +9,7 @@ namespace ControleResidencial.Services.Interfaces
         //recebe id e retorna PessoaResponseDto. Se não existir, retorna null, ou melhor, uma exceção tratada
         Task<PessoaResponseDto?> BuscarPorIdAsync(int id);
         //retorna List<PessoaResponseDto>
-        Task<PessoaResponseDto> ListarAsync();
+        Task<List<PessoaResponseDto>> ListarAsync();
         //recebe apenas id, sem nenhum retorno
         Task ExcluirAsync(int id);
 
