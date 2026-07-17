@@ -6,17 +6,17 @@ namespace ControleResidencial.Models
     [Table("transacoes")]
     public class Transacao
     {
-        public int Id { get; private set; }
-        public string Descricao { get; private set; }
-        public decimal Valor {  get; private set; } 
-        public TipoTransacao Tipo {  get; private set; }
+        public int Id { get; set; }
+        public string Descricao { get; set; }
+        public decimal Valor {  get; set; } 
+        public TipoTransacao Tipo {  get; set; }
         //chave estrangeira
-        public int PessoaId {  get; private set; }
+        public int PessoaId {  get; set; }
 
         //propriedade de navegação. Para o Entity Framework entender o relacionamento entre as entidades.
-        public Pessoa Pessoa { get; private set; } = null!;       
+        public Pessoa Pessoa { get; set; } = null!;       
 
-        private Transacao()
+        public Transacao()
         {
             
         }

@@ -1,10 +1,8 @@
 ﻿using ControleResidencial.Data;
 using ControleResidencial.DTOs.Pessoa;
 using ControleResidencial.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using System.Runtime.CompilerServices;
+
 
 namespace ControleResidencial.Services.Interfaces
 
