@@ -1,6 +1,7 @@
 ﻿using ControleResidencial.Data;
 using ControleResidencial.DTOs.Transacao;
 using ControleResidencial.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControleResidencial.Services.Interfaces
 {
@@ -51,9 +52,39 @@ namespace ControleResidencial.Services.Interfaces
             };
         }
 
+        public async Task<TransacaoResponseDto?> BuscarPorIdAsync(int id)
+        {
+            var transacao = await _context.Transacoes.FindAsync(id);
+
+            if (transacao == null)
+            {
+                return null;
+            }
+   
+            return new TransacaoResponseDto
+            {
+                Id = transacao.Id,
+                Descricao = transacao.Descricao,
+                Valor = transacao.Valor,
+                Tipo = transacao.Tipo,
+                PessoaId = transacao.PessoaId
+            };
+            
+        }
+
         public async Task<List<TransacaoResponseDto>> ListarAsync()
         {
-            throw new NotImplementedException();
+            var transacao = await _context.Transacoes.ToListAsync();
+
+            return transacao
+                .Select(p => new TransacaoResponseDto
+            {
+                Id = p.Id,
+                Descricao = p.Descricao,
+                Valor = p.Valor,
+                Tipo = p.Tipo,
+                PessoaId = p.PessoaId
+            }).ToList();
         }
     }
 }

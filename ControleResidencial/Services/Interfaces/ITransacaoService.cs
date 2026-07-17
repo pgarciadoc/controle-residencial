@@ -8,5 +8,6 @@ namespace ControleResidencial.Services.Interfaces
         Task<TransacaoResponseDto> CriarAsync(CreateTransacaoDto dto);
 
         Task<List<TransacaoResponseDto>> ListarAsync();
+
     }
 }

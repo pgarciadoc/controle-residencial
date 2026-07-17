@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPessoaService, PessoaService>();
 builder.Services.AddScoped<ITransacaoService, TransacaoService>();
-builder.Services.AddScoped<ITotaisService, TotaisService>();
+builder.Services.AddScoped<ITotalService, TotaisService>();
 
 
 var app = builder.Build();

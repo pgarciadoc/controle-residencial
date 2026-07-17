@@ -1,7 +1,7 @@
 ﻿namespace ControleResidencial.DTOs.Pessoa
 {
     //DTO que será usado no TotaisService
-    public class TotaisPessoaDto
+    public class TotalPessoaDto
     {
         //Para exibirmos o histórico completo da pessoa, precisamos:
         public int PessoaId { get; set; }

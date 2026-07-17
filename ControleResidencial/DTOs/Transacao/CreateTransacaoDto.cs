@@ -4,10 +4,10 @@ namespace ControleResidencial.DTOs.Transacao
 {
     public class CreateTransacaoDto
     {
-        public string Descricao { get; private set; }
-        public decimal Valor { get; private set; }
-        public TipoTransacao Tipo { get; private set; }
+        public string Descricao { get; set; }
+        public decimal Valor { get; set; }
+        public TipoTransacao Tipo { get; set; }
         //chave estrangeira
-        public int PessoaId { get; private set; }
+        public int PessoaId { get; set; }
     }
 }
