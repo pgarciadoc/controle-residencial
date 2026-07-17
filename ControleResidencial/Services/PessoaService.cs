@@ -1,6 +1,7 @@
 ﻿using ControleResidencial.Data;
 using ControleResidencial.DTOs.Pessoa;
 using ControleResidencial.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Runtime.CompilerServices;
@@ -56,14 +57,42 @@ namespace ControleResidencial.Services.Interfaces
             };
         }
 
-        public Task ExcluirAsync(int id)
+        public async Task<bool> ExcluirAsync(int id)
         {
-            throw new NotImplementedException();
+            var pessoa = await _context.Pessoas.FindAsync(id);
+
+            //Verificando se a pessoa existe antes de tentar remover. Se não existir, retorna false.
+            if (pessoa == null)
+            {
+                return false;
+            }
+
+            //Removendo a pessoa do contexto, mas não salvando ainda.
+            _context.Pessoas.Remove(pessoa);
+            //Salvando as alterações no banco de dados e verificando se alguma linha foi afetada.
+
+            var linhasAfetadas = await _context.SaveChangesAsync();
+
+            bool sucesso = linhasAfetadas > 0;
+
+            return sucesso;
+
         }
 
+        //Usando LINQ para mapear a lista de pessoas para uma lista de PessoaResponseDto
         public async Task<List<PessoaResponseDto>> ListarAsync()
         {
-            throw new NotImplementedException();
+
+            var pessoa = await _context.Pessoas.ToListAsync();
+
+            return pessoa
+                .Select(p => new PessoaResponseDto
+            {
+                Id = p.Id,
+                Nome = p.Nome,
+                Idade = p.Idade,
+            }).ToList();
+
         }
     }
 }

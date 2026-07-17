@@ -8,7 +8,7 @@ namespace ControleResidencial.Controllers
     // Controller: Porta de entrada da API.
     // Recebe requisições HTTP e delega a regra de negócio ao Service.
 
-    //Indicando que trata-se de um controller de API e definindo a rota base para as ações do controller. A rota "api/[controller]" significa que o nome do controller (sem o sufixo "Controller") será usado como parte da URL. Por exemplo, se o controller for "PessoasController", a rota será "api/pessoas".
+    //Indicando que trata-se de um controller de API e definindo a rota base para as ações do controller.
     [ApiController]
     [Route("api/[controller]")]
     public class PessoasController : ControllerBase
@@ -49,5 +49,38 @@ namespace ControleResidencial.Controllers
             return CreatedAtAction(nameof(BuscarPorId), new { id = pessoa.Id }, pessoa);
         }
 
+        //Listar todas as pessoas cadastradas. Retorna uma lista de PessoaResponseDto.
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<PessoaResponseDto>>> Listar()
+        {
+            var pessoas = await _pessoaService.ListarAsync();
+
+            return Ok(pessoas); // Retorna 200 - Uma lista com todas as pessoas cadastradas.
+
         }
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ExcluirAsync(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest(); // Retorna 400 - Bad Request se o ID for inválido.
+            }
+
+            var deletadoSucesso = await _pessoaService.ExcluirAsync(id);
+
+            if (!deletadoSucesso)
+            {
+                return NotFound(); // Retorna 404 - Not Found se a pessoa não for encontrada.
+            }
+
+            return NoContent();
+        }
+
+    }
+
 }

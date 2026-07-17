@@ -11,7 +11,7 @@ namespace ControleResidencial.Services.Interfaces
         //retorna List<PessoaResponseDto>
         Task<List<PessoaResponseDto>> ListarAsync();
         //recebe apenas id, sem nenhum retorno
-        Task ExcluirAsync(int id);
+        Task<bool> ExcluirAsync(int id);
 
 
         //Usamos async porque o EntityFramework trabalha muito com operações assíncronas. Por isso que a interface retorna Task< >
