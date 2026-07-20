@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ControleResidencial.Services.Interfaces
 {
+    // Serviço responsável pelo cadastro, consulta e validação
+    // das transações financeiras da aplicação.
     public class TransacaoService : ITransacaoService
     {
+        // Contexto utilizado para persistência dos dados.
         private readonly AppDbContext _context;
 
         //Garantindo que a classe implementa a interface e que tudo compila, antes de construir a lógica
@@ -27,12 +30,16 @@ namespace ControleResidencial.Services.Interfaces
                 Tipo = dto.Tipo,
                 PessoaId = dto.PessoaId
             };
-
+            
+            // Garante que a transação seja vinculada
+            // apenas a uma pessoa previamente cadastrada.
             if (pessoa == null) 
             {
                 throw new Exception("A pessoa não existe");
             }
 
+            // Regra de negócio:
+            // Pessoas menores de idade podem cadastrar apenas despesas.
             if (pessoa.Idade < 18 && dto.Tipo == TipoTransacao.Receita)
             {
               throw new Exception("A pessoa não pode adicionar uma receita, pois é menor de idade");

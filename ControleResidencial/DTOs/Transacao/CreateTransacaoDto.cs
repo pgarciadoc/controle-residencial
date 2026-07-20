@@ -2,6 +2,7 @@
 
 namespace ControleResidencial.DTOs.Transacao
 {
+    //DTO utilizado para receber os dados necessários para o cadastro de uma nova transação.
     public class CreateTransacaoDto
     {
     

@@ -2,6 +2,7 @@
 
 namespace ControleResidencial.DTOs.Transacao
 {
+    //DTO utilizado para retornar os dados de uma transação cadastrada.
     public class TransacaoResponseDto
     {
         public int Id { get; set; }

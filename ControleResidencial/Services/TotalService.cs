@@ -7,6 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 public class TotaisService : ITotalService
 {
+    // Serviço responsável por consolidar os indicadores financeiros,
+    // calculando totais individuais e gerais do sistema.
+
+    // Contexto de acesso às entidades persistidas.
     private readonly AppDbContext _context;
 
     public TotaisService(AppDbContext context)

@@ -1,6 +1,6 @@
 ﻿namespace ControleResidencial.DTOs.Pessoa
 {
-    //DTO que será usado no TotaisService
+    //DTO utilizado para representar os totais financeiros individuais de cada pessoa.
     public class TotalPessoaDto
     {
         //Para exibirmos o histórico completo da pessoa, precisamos:

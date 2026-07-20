@@ -4,14 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ControleResidencial.Controllers
 {
-        //Indicando que trata-se de um controller de API e definindo a rota base para as ações do controller.
+    // Controller responsável pelos endpoints relacionados as Transações.
+    // Atua como intermediário entre as requisições HTTP e a camada de serviços,
+    // mantendo a regra de negócio centralizada no Service.
+
     [ApiController]
     [Route("api/[controller]")]
     public class TransacoesController : ControllerBase
     {
 
-        // Aqui, vamos injetar a interface ao invés da PessoaService diretamente. Controller depende apenas do contrato, não da implementação concreta.
-        // Isso permite que possamos trocar a implementação do serviço sem precisar alterar o controller, promovendo maior flexibilidade e testabilidade.
+        // Dependência injetada via interface para promover baixo acoplamento,
+        // facilitar testes e permitir a substituição da implementação do serviço.
         private readonly ITransacaoService _transacaoService;
 
         public TransacoesController(ITransacaoService transacaoService)
@@ -28,6 +31,7 @@ namespace ControleResidencial.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<TransacaoResponseDto>> Criar([FromBody]CreateTransacaoDto dto)
         {
+            //try catch para tratar exceções
             try
             {
                 var transacao = await _transacaoService.CriarAsync(dto);
@@ -49,7 +53,6 @@ namespace ControleResidencial.Controllers
 
         // GET: api/Transacoes
         // Lista todas as transações cadastradas.
-
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<TransacaoResponseDto>>> Listar()

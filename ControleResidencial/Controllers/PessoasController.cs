@@ -5,18 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace ControleResidencial.Controllers
 {
 
-    // Controller: Porta de entrada da API.
-    // Recebe requisições HTTP e delega a regra de negócio ao Service.
-
-    //Indicando que trata-se de um controller de API e definindo a rota base para as ações do controller.
+    // Controller responsável pelos endpoints relacionados ao cadastro de pessoas.
+    // Atua como intermediário entre as requisições HTTP e a camada de serviços,
+    // mantendo a regra de negócio centralizada no Service.
     [ApiController]
     [Route("api/[controller]")]
     public class PessoasController : ControllerBase
     {
-        // Aqui, vamos injetar a interface ao invés da PessoaService diretamente. Controller depende apenas do contrato, não da implementação concreta.
-        // Isso permite que possamos trocar a implementação do serviço sem precisar alterar o controller, promovendo maior flexibilidade e testabilidade.
+        // Dependência injetada via interface para promover baixo acoplamento,
+        // facilitar testes e permitir a substituição da implementação do serviço.
         private readonly IPessoaService _pessoaService;
-
+    
         public PessoasController(IPessoaService pessoaService)
         {
             _pessoaService = pessoaService;
@@ -49,7 +48,7 @@ namespace ControleResidencial.Controllers
             return CreatedAtAction(nameof(BuscarPorId), new { id = pessoa.Id }, pessoa);
         }
 
-        //Listar todas as pessoas cadastradas. Retorna uma lista de PessoaResponseDto.
+        // Retorna todas as pessoas cadastradas.
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -60,6 +59,9 @@ namespace ControleResidencial.Controllers
             return Ok(pessoas); // Retorna 200 - Uma lista com todas as pessoas cadastradas.
 
         }
+
+        // Remove uma pessoa e suas respectivas transações.
+        // A exclusão em cascata é realizada pelo Entity Framework.
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
