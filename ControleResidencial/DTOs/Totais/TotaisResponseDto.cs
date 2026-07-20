@@ -6,5 +6,6 @@ namespace ControleResidencial.DTOs.Totais
     {
         public List<TotalPessoaDto> Pessoas { get; set; } = new();
         public TotalGeralDto TotalGeral { get; set; } = new();
+
     }
 }

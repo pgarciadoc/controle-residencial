@@ -36,11 +36,30 @@ export default function TransacaoTable({
         },
 
         {
-            field: "tipo",
-            headerName: "Tipo",
+            field: "valor",
+            headerName: "Valor",
             width: 120,
-            renderCell: (params) =>
-                params.value === 0 ? "Receita" : "Despesa"
+
+            renderCell: (params) => {
+                const ehReceita = params.row.tipo === 0;
+
+                return (
+                    <span
+                        style={{
+                            color: ehReceita ? "#2e7d32" : "#d32f2f",
+                            fontWeight: 600,
+                        }}
+                    >
+                        {`${ehReceita ? "+" : "-"}${Number(params.value).toLocaleString(
+                            "pt-BR",
+                            {
+                                style: "currency",
+                                currency: "BRL",
+                            }
+                        )}`}
+                    </span>
+                );
+            },
         },
     ];
 

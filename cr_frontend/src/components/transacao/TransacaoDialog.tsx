@@ -24,6 +24,7 @@ interface TransacaoDialogProps {
     pessoas: Pessoa[];
 
     onSalvar: (
+        
         descricao: string,
         valor: number,
         tipo: number,
@@ -45,6 +46,7 @@ export default function TransacaoDialog({
     const [valor, setValor] = useState("");
     const [tipo, setTipo] = useState("");
     const [pessoaId, setPessoaId] = useState("");
+    const valorConvertido = Number(valor.replace(",", "."));
 
     function limparFormulario() {
         setDescricao("");
@@ -79,7 +81,6 @@ export default function TransacaoDialog({
 
                 <TextField
                     label="Valor"
-                    type="number"
                     value={valor}
                     onChange={(e) => setValor(e.target.value)}
                     fullWidth
@@ -140,6 +141,12 @@ export default function TransacaoDialog({
                 <Button
                     variant="contained"
                      onClick={() => {
+                          const valorConvertido = Number(
+                            valor.replace(",", ".")
+                         );
+                        console.log("Valor digitado:", valor);
+                        console.log("Valor convertido:", valorConvertido);
+
                         console.log({
                             descricao,
                             valor,
@@ -150,10 +157,11 @@ export default function TransacaoDialog({
                         onSalvar(
                             
                             descricao,
-                            Number(valor),
+                            valorConvertido,
                             Number(tipo),
                             Number(pessoaId)
                         )
+
                     }}
                 >
                     Salvar
