@@ -48,13 +48,17 @@ namespace ControleResidencial.Services.Interfaces
                 Descricao = transacao.Descricao,
                 Valor = transacao.Valor,
                 Tipo = transacao.Tipo,
-                PessoaId = transacao.PessoaId
+                PessoaId = transacao.PessoaId,
+                PessoaNome = transacao.Pessoa.Nome
+
             };
         }
 
         public async Task<TransacaoResponseDto?> BuscarPorIdAsync(int id)
         {
-            var transacao = await _context.Transacoes.FindAsync(id);
+            var transacao = await _context.Transacoes
+                .Include(t => t.Pessoa)
+                .FirstOrDefaultAsync(t => t.Id == id);
 
             if (transacao == null)
             {
@@ -67,23 +71,28 @@ namespace ControleResidencial.Services.Interfaces
                 Descricao = transacao.Descricao,
                 Valor = transacao.Valor,
                 Tipo = transacao.Tipo,
-                PessoaId = transacao.PessoaId
+                PessoaId = transacao.PessoaId,
+                PessoaNome = transacao.Pessoa.Nome
+
             };
             
         }
 
         public async Task<List<TransacaoResponseDto>> ListarAsync()
         {
-            var transacao = await _context.Transacoes.ToListAsync();
-
-            return transacao
-                .Select(p => new TransacaoResponseDto
+            var transacoes = await _context.Transacoes
+                .Include(t => t.Pessoa)
+                .ToListAsync();
+            return transacoes
+                .Select(t => new TransacaoResponseDto
             {
-                Id = p.Id,
-                Descricao = p.Descricao,
-                Valor = p.Valor,
-                Tipo = p.Tipo,
-                PessoaId = p.PessoaId
+                Id = t.Id,
+                Descricao = t.Descricao,    
+                Valor = t.Valor,
+                Tipo = t.Tipo,
+                PessoaId = t.PessoaId,
+                PessoaNome = t.Pessoa.Nome
+
             }).ToList();
         }
     }

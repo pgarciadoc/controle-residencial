@@ -6,12 +6,12 @@ namespace ControleResidencial.Models
     [Table("pessoas")]
     public class Pessoa
     {
-        public int Id { get; private set; }
-        public string Nome { get; private set; } = string.Empty;
-        public int Idade { get; private set; }
+        public int Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public int Idade { get; set; }
 
         //propriedade de navegação. Para o Entity Framework entender o relacionamento entre as entidades
-        public ICollection<Transacao> Transacoes { get; private set; }
+        public ICollection<Transacao> Transacoes { get; set; }
             = new List<Transacao>();
 
         //encapsulamento para que não seja criada uma Pessoa sem nome e idade

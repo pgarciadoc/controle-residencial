@@ -10,6 +10,7 @@ namespace ControleResidencial.DTOs.Transacao
         public TipoTransacao Tipo { get; set; }
         //chave estrangeira
         public int PessoaId { get; set; }
+        public string PessoaNome { get; set; } = string.Empty;
 
     }
 }
