@@ -15,7 +15,8 @@ import {
 import { useState } from "react";
 import type { Pessoa } from "../../types/Pessoa";
 
-
+// Janela modal para cadastro de transações.
+// Permite selecionar pessoa, tipo, descrição e valor da transação.
 interface TransacaoDialogProps {
 
     
@@ -31,7 +32,6 @@ interface TransacaoDialogProps {
         pessoaId: number
     ) => void;
 }
-
 
 
 export default function TransacaoDialog({

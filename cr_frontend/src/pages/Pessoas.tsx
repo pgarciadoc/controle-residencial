@@ -10,7 +10,8 @@ import {
     excluirPessoa,
 } from "../services/pessoaService";
 
-
+// Página responsável pelo gerenciamento de pessoas.
+// Permite cadastrar, listar e excluir pessoas cadastradas.
 
 export default function Pessoas() {
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);

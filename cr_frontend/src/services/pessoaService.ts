@@ -1,6 +1,8 @@
 import api from "./Api";
 import type { Pessoa } from "../types/Pessoa";
 
+// Responsável pelas requisições relacionadas ao cadastro de pessoas.
+// Centraliza todas as chamadas HTTP para o endpoint de pessoas.
 export async function listarPessoas() {
     const response = await api.get<Pessoa[]>("/Pessoas");
     return response.data;

@@ -1,8 +1,9 @@
 import { Box, Paper } from "@mui/material";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
-
 import type { Transacao } from "../../types/Transacao";
 
+// Exibe as últimas transações cadastradas.
+// Utilizado exclusivamente no Dashboard como resumo das movimentações recentes.
 interface Props {
     transacoes: Transacao[];
 }

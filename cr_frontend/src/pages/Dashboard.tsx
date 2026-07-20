@@ -12,6 +12,9 @@ import type { Transacao } from "../types/Transacao";
 import type { TotaisResponse } from "../types/TotaisResponse";
 import UltimasTransacoesTable from "../components/dashboard/UltimasTransacoesTable";
 
+// Página inicial da aplicação.
+// Exibe um resumo geral do sistema através de indicadores e das últimas transações.
+
 export default function Dashboard() {
 
     const [pessoas, setPessoas] = useState<Pessoa[]>([]);

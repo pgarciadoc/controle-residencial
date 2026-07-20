@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography } from "@mui/material";
 
+// Componente reutilizável utilizado para apresentar indicadores do Dashboard.
 interface DashboardCardProps {
     titulo: string;
     valor: string | number;

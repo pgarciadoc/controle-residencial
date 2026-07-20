@@ -11,9 +11,10 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import PaidIcon from "@mui/icons-material/Paid";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-
 import { Link } from "react-router-dom";
 
+// Menu lateral da aplicação.
+// Centraliza a navegação entre todas as páginas do sistema.
 const drawerWidth = 240;
 
 export default function Sidebar() {

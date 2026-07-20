@@ -2,6 +2,8 @@ import { Box } from "@mui/material";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
+// Estrutura principal da interface.
+// Define o layout compartilhado utilizado por todas as páginas.
 type LayoutProps = {
   children: React.ReactNode;
 };

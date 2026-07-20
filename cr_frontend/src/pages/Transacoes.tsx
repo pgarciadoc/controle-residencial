@@ -8,6 +8,8 @@ import type { Pessoa } from "../types/Pessoa";
 import { listarPessoas } from "../services/pessoaService";
 import axios from "axios";
 
+// Página responsável pelo gerenciamento das transações.
+// Permite cadastrar e visualizar todas as transações registradas.
 
 export default function Transacoes() {
 

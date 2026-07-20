@@ -3,6 +3,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import type { GridColDef } from "@mui/x-data-grid";
 import type { Transacao } from "../../types/Transacao";
 
+// Exibe todas as transações cadastradas.
+// Realiza a formatação dos valores e identifica visualmente receitas e despesas.
 interface TransacaoTableProps {
     transacoes: Transacao[];
 }

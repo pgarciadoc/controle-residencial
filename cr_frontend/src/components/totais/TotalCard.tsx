@@ -1,10 +1,11 @@
 import { Card, CardContent, Typography } from "@mui/material";
 
+// Card reutilizável utilizado para apresentar indicadores financeiros.
+// Destaca visualmente receitas, despesas e saldo líquido.
 interface Props {
     titulo: string;
     valor: number;
 }
-
 export default function TotalCard({ titulo, valor }: Props) {
 
     return (

@@ -4,6 +4,8 @@ import type { GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import type { Pessoa } from "../../types/Pessoa";
 
+// Tabela responsável por exibir todas as pessoas cadastradas.
+// Utiliza o DataGrid do Material UI para paginação e organização dos dados.
 interface PessoaTableProps {
     pessoas: Pessoa[];
     onExcluir: (id: number) => void;

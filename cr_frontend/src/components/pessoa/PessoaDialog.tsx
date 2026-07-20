@@ -9,6 +9,9 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
+// Janela modal utilizada para cadastrar uma nova pessoa.
+// Coleta os dados informados pelo usuário antes de enviá-los à página.
+
 interface PessoaDialogProps {
     open: boolean;
     onClose: () => void;
